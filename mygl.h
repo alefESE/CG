@@ -17,16 +17,10 @@ void PutPixel(ponto p, cor c){
 // p = porcentagem
 static cor interpola(cor c1, cor c2, float p){
 	c1.r = c1.r*(1-p)+c2.r*p;
-	if(c1.r < 0) c1.r = 0;
-	else if(c1.r > 255) c1.r = 255;
 	
 	c1.g = c1.g*(1-p)+c2.g*p;
-	if(c1.g < 0) c1.g = 0;
-	else if(c1.g > 255) c1.g = 255;
 	
 	c1.b = c1.b*(1-p)+c2.b*p;
-	if(c1.b < 0) c1.b = 0;
-	else if(c1.b > 255) c1.b = 255;
 
 	return c1;
 }
