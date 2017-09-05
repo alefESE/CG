@@ -59,6 +59,7 @@ uma representada por 1 byte (unsigned char).
   ```C
   cor (cor c1, cor c2, float p); // Esta função implementa a tecnica de goraud[2] para interpolar duas cores
   ```
+  ![line](interpolacao2.jpg)
   * DrawLine:
   ```C
   void (linha l, cor c1, cor c2); // Esta é a função que implementa o algoritmo de Bresenham
@@ -67,7 +68,7 @@ uma representada por 1 byte (unsigned char).
   ```C
   void DrawTriangle(triangulo t, cor c1, cor c2, cor c3); // Esta função apenas desenha um triangulo oco
   ```
-  
+  ![triangulo](triangulo.png)
   O programa não é interativo e, não existindo entrada de dados no sistema, os valores são especificados antes da compilação.
   
   ## Discussão
