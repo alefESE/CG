@@ -53,7 +53,8 @@ uma representada por 1 byte (unsigned char).
   As funções implementadas somam um total de 4. São elas:
   * PutPixel:
   ```C
-  void PutPixel(ponto p, cor c); // Esta função plota um ponto no buffer de video
+  // Esta função plota um ponto no buffer de video
+  void PutPixel(ponto p, cor c);
   ```
   * interpola:
   ```C
