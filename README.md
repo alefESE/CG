@@ -69,6 +69,7 @@ uma representada por 1 byte (unsigned char).
   void DrawTriangle(triangulo t, cor c1, cor c2, cor c3); // Esta função apenas desenha um triangulo oco
   ```
   ![triangulo](triangulo.png)
+  
   O programa não é interativo e, não existindo entrada de dados no sistema, os valores são especificados antes da compilação.
   
   ## Discussão
