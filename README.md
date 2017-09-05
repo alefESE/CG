@@ -57,16 +57,19 @@ uma representada por 1 byte (unsigned char).
   ```
   * interpola:
   ```C
-  cor (cor c1, cor c2, float p); // Esta função implementa a tecnica de goraud[2] para interpolar duas cores
+  // Esta função implementa a tecnica de goraud[2] para interpolar duas cores
+  cor (cor c1, cor c2, float p);
   ```
   ![line](interpolacao2.jpg)
   * DrawLine:
   ```C
-  void (linha l, cor c1, cor c2); // Esta é a função que implementa o algoritmo de Bresenham
+  // Esta é a função que implementa o algoritmo de Bresenham
+  void (linha l, cor c1, cor c2);
   ```
   * DrawTriangle:
   ```C
-  void DrawTriangle(triangulo t, cor c1, cor c2, cor c3); // Esta função apenas desenha um triangulo oco
+  // Esta função desenha um triangulo oco interpolando as cores dos vertices ao longo das arestas
+  void DrawTriangle(triangulo t, cor c1, cor c2, cor c3);
   ```
   ![triangulo](triangulo.png)
   
