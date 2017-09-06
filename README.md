@@ -83,5 +83,5 @@ uma representada por 1 byte (unsigned char).
   
   ## Referências
   [1]BRESENHAM, Jack E. Algorithm for computer control of a digital plotter. **IBM Systems journal**, v. 4, n. 1, p. 25-30, 1965.
-  [2]https://www.stack.nl/~dimitri/3dsview/gouraud.html. Acessado em 5 de setembro, 2017.
+  [2]http://www.alanzucconi.com/2016/01/06/colour-interpolation/ Acessado em 5 de setembro, 2017.
   [3]http://www.demic.fee.unicamp.br/~jeff/ArquivosIndex/Bresenham. Acessado em 5 de setembro, 2017.
