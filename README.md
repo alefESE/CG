@@ -53,23 +53,24 @@ uma representada por 1 byte (unsigned char).
   As funções implementadas somam um total de 4. São elas:
   * PutPixel:
   ```C
-  // Esta função plota um ponto no buffer de video
+  // Esta função plota um ponto no buffer de video com a cor RGBA passada como parametro
   void PutPixel(ponto p, cor c);
   ```
   * interpola:
   ```C
-  // Esta função implementa a tecnica de goraud[2] para interpolar duas cores
+  // Esta função implementa a tecnica de goraud[2] para interpolar duas cores em uma reta
   cor (cor c1, cor c2, float p);
   ```
   ![line](interpolacao2.jpg)
   * DrawLine:
   ```C
-  // Esta é a função que implementa o algoritmo de Bresenham
+  // Esta é a função que implementa o algoritmo de Bresenham[1]
   void (linha l, cor c1, cor c2);
   ```
   * DrawTriangle:
   ```C
-  // Esta função desenha um triangulo oco interpolando as cores dos vertices ao longo das arestas
+  // Esta função desenha um triangulo oco interpolando as cores c1, c2 e c3 dos vertices ao longo das arestas presentes na estrutura
+  // passada por parametro.
   void DrawTriangle(triangulo t, cor c1, cor c2, cor c3);
   ```
   ![triangulo](triangulo.png)
