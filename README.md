@@ -22,6 +22,50 @@ uma representada por 1 byte (unsigned char).
   
   A compilação do projeto exige que os cabeçalhos do OpenGL e a GLUT(*The OpenGL Toolkit*) estejam instalados.
   
+  ### O algoritmo
+  
+  O algoritmo de Bresenham realiza a rasterização de segmentos de reta empregando apenas operações de aritmética de inteiros e, portanto, permite um maior desempenho computacional. O algoritmo baseia-se no critério do ponto médio. Consideremos a uma linha reta que intersepta duas colunas de píxeis. Para cada coluna de píxeis existem dois píxeis que se encontram mais próximos da reta, um abaixo e outro acima desta. A questão é determinar qual dos píxels deve ser selecionado dado a limitação de precisão física no dispositivo de vídeo. Se atentarmos na localização do ponto médio **(m)** entre os dois píxeis em relação à reta, teremos uma forma simples de determinar qual dos píxeis deve ser selecionado. Se o ponto médio se encontrar abaixo da reta, deve ser selecionado o píxel imediatamente acima desta **(p1)**. Caso contrário, o píxel a selecionar deverá ser o píxel imediatamente abaixo desta **(p2)**. E mais ainda, se o ponto médio está "encima" da reta, a escolha de qual píxel selecionar é arbitrária.
+  
+  ![midpoint](midpoint.png)
+  
+  Para determinar o ponto médio da reta, consideremos a a forma implícita da equação de um reta que é:
+  
+  *F(x, y) = ax + by + c*
+  
+  Onde,
+  
+  a = y<sub>final</sub> - y<sub>inicial</sub>
+  
+  b = - (x<sub>final</sub> - x<sub>inicial</sub>)
+  
+  c = (x<sub>final</sub> - x<sub>inicial</sub>).b
+  
+  Desta forma, dado um ponto *P(x, y)*, *F(x, y) ≠ 0* se P não está na reta.
+  
+  Assim,  podemos descobrir se o ponto médio, dado por *F(x<sub>0</sub>+1, y<sub>0</sub>+1/2)* está ou não na reta. Além disso, se *F(x<sub>0</sub>+1, y<sub>0</sub>+1/2)* for positivo o ponto está acima da reta. Caso contrário, se negativo, ele está abaixo da reta.
+  Esta informação é importante para a decisão de qual pixel será selecionado pois, como já foi citado acima, a posição do ponto médio em relação a reta, determina que píxel está mais próximo da reta. Porém, calcular se este ponto médio, para cada ponto médio entre os segmentos de reta, está ou não na reta(e se está acima ou abaixo dela) seria muito custoso computacionalmente. Uma alternativa para esse problema é utilizar a distância *D* entre o ponto médio e a origem de cada segmento de reta. 
+  
+  Assim,
+  
+  *D = F(x<sub>0</sub>, y<sub>0</sub>+1/2) - F(x<sub>0</sub>, y<sub>0</sub>) = a + (1/2).b
+  
+  assim como no metodo do ponto médio[3], se D é positivo, então *(x<sub>0</sub>+1, y<sub>0</sub>+1)*(píxel abaixo) é escolhido, senão *(x<sub>0</sub>+1, y<sub>0</sub>)*(píxel acima) é escolhido.
+  a decisão para o segundo ponto pode ser escrita como:
+  
+  *D = F(x<sub>0</sub>+2, y<sub>0</sub>+1/2) - F(x<sub>0</sub>+1, y<sub>0</sub>+1/2) = a*
+  
+  *D = F(x<sub>0</sub>+2, y<sub>0</sub>+3/2) - F(x<sub>0</sub>+1, y<sub>0</sub>+1/2) = a+b
+  
+  Analogamente, se D é positivo, então *(x<sub>0</sub>+2, y<sub>0</sub>+1)*(píxel abaixo) é escolhido, senão *(x<sub>0</sub>+1, y<sub>0</sub>)*(píxel acima) é escolhido. Esta decisão pode ser generalizada acumulando o erro.
+  
+  O unico problema que ainda procisa ser resolvido é o termo *1/2* no valor inicial de *D*, que não é um número inteiro portanto representa um problema de desempenho do algoritmo. Como oque importa é apenas do sinal de *D*, podemos, sem perda de generalidade, multiplicar tudo por 2. 
+  
+  Finalmente, 
+  
+  *D<sub>inicial</sub> = 2a + b*
+  
+  Precisamos apenas percorrer a reta do ponto inicial ao final seguindo a regra da escolha de píxels com relação a *D*.
+  
   ## A implementação
   
   Com o uso do *framework* em questão, os arquivos a serem modificados para a implementação da atividade são: mygl.h e main.cpp. Porém, optei por definir tipos de dados específicos apenas com o intuito de reduzir o número de parametros das assinaturas das funções escritas para a implementação do algoritmo de Bresenham.
@@ -84,5 +128,9 @@ uma representada por 1 byte (unsigned char).
   
   ## Referências
   [1]BRESENHAM, Jack E. Algorithm for computer control of a digital plotter. **IBM Systems journal**, v. 4, n. 1, p. 25-30, 1965.
+  
   [2]http://www.alanzucconi.com/2016/01/06/colour-interpolation/ Acessado em 5 de setembro, 2017.
+  
   [3]http://www.demic.fee.unicamp.br/~jeff/ArquivosIndex/Bresenham. Acessado em 5 de setembro, 2017.
+  
+  [3]https://en.wikipedia.org/wiki/Midpoint_method. Acessado em 5 de setembro, 2017.
