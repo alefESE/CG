@@ -69,8 +69,8 @@ uma representada por 1 byte (unsigned char).
   ```
   * DrawTriangle:
   ```C
-  // Esta função desenha um triangulo oco interpolando as cores c1, c2 e c3 dos vertices ao longo das arestas presentes na estrutura
-  // passada por parametro.
+  // Esta função desenha um triangulo oco interpolando as cores c1, c2 e c3 dos vertices ao longo das 
+  // arestas presentes na estrutura passada por parametro.
   void DrawTriangle(triangulo t, cor c1, cor c2, cor c3);
   ```
   ![triangulo](triangulo.png)
